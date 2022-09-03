@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 깊은 복사를 하는 js 대표 함수들 > concat, filter, map, slice, 스프레드(전개) 연산자
+            // 깊은 복사: 부모 컴포넌트가 다시 그려지면, 자식 컴포넌트도 다시 그려야하는지 연산을 해주는 작업
+
+        // 1-스프레드 연산자
+        const a = [1,2,3];
+        const b = [...a] // [1,2,3]
+        const c = [...a, 4] // [1,2,3,4]
+
+        // 2-concat (기존 배열과 추가한 데이터 합해서 새로운 배열로 리턴)
+        const a2 = [1,2,3];
+        const b2 = a2.concat(4) // [1,2,3,4]
+        const b3 = a2.push(4) // [4]
+        a2.concat(4) // [1,2,3]
+        const c2 = [0, ...a, 4] // [0,1,2,3,4]
+
+        // 3-filter (걸러내는 함수)
+        const a3 = [1,2,3];
+        // filter는 boolean 타입으로 리턴 받고, 함수에 대한 true 값만 걸러냄 > 주로 삭제할 때 활용
+        const b4 = a3.filter( (n) => { return n != 1 } ); // [2,3]
+
+        // 4-slice (잘라내는 함수) > 주로 삽입할 때 활용
+        const a4 = [1,2,3];
+        const b4 = a4.slice(0,2) // [1,2]
+        const c4 = [a4.slice(0,2)] // [[1,2]]
+        const c5 = [...a.slice(0,2), 4, ...a.slice(2,3)] // [1,2,4,3]
+
+        // 5-map (반복하는 함수)
+        const a5 = [1,2,3];
+
+        // 방법 1
+        for ( let i = 0; i < a5.length; i++ ) {
+            console.log(a5[i])
+        }
+
+        // 방법 2 > 리턴 못함
+        a5.forEach((n) => {console.log(n)})
+
+        // 방법 3
+        const b5 = a5.map( (n) => {return n}) // [1,2,3]
+
+    </script>
+</body>
+</html>

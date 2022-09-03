@@ -4,6 +4,8 @@ import './App.css';
 let a = 10;
 const b = 20;
 
+let list = [1,2,3];
+
 function App() {
     return (
         // 리액트는 하나의 태그만 리턴함
@@ -16,6 +18,9 @@ function App() {
             <hr/>
             {/* 스타일은 외부파일(App.css) 또는 라이브러리(component-style, bootstrap 등)를 사용하는 걸 권장*/}
             <h3 className="font-style"> 스타일 입히기 </h3>
+
+            {/* map 함수 활용 */}
+            <div>{list.map( n => <h4>{n}</h4>)}</div>
         </div>
     );
 }
