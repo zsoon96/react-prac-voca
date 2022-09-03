@@ -46,6 +46,39 @@
         // 방법 3
         const b5 = a5.map( (n) => {return n}) // [1,2,3]
 
+        // 배열 수정하기 (응용)
+        // 1-단일 객체 수정
+        const data = {phone: "0000"};
+        const a6 = {id: 1, name:"홍길동", phone:"1111"};
+        const b6 = {...a6,...data};
+
+        // 2-여러 객체 중, 단일 객체 정보 수정
+        const users = [
+            {
+                id: 1,
+                name: 'name1',
+                phone: '1234'
+            },
+            {
+                id: 2,
+                name: 'name2',
+                phone: '5678'
+            },
+            {
+                id: 3,
+                name: 'name3',
+                phone: '0000'
+            }
+        ];
+
+        const updateUserDto = {
+            id: 2,
+            name: 'name 수정'
+        }
+
+        // map함수로 반복하면서 updateUserDto의 id와 같으면 정보 변경
+        const newUsers = users.map( user => user.id === updateUserDto.id ? {...user, ...updateUserDto} : u)
+
     </script>
 </body>
 </html>
