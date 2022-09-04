@@ -1,29 +1,37 @@
 import './App.css';
-import {useEffect, useState} from "react";
+import {useMemo, useState} from "react";
 
 function App() {
 
-    const [data, setData] = useState(0)
+    const [list, setList] = useState([1,2,3,4])
+    const [str, setStr] = useState("합계")
 
-    const download = () => {
-        let download = 5;
-        setData(download)
+    const getAddResult = () => {
+        let sum = 0;
+        list.forEach( (i)=> ( sum = sum + i ) )
+        console.log("sum 함수 실행 : " + sum)
+        return sum
     }
 
-    // useEffect()의 실행시점
-    // 1- App() 함수가 최초 실행될 때 (첫 그림이 그려질 때)
-    // 2- 상태 변수가 변경될 때 + 의존 리스트 관리 가능
-    useEffect( () => {
-       console.log("useEffect 실행")
-        download(); // +1 되자마자 5가 됨 ( 최초 실행에 따른 useEffect 실행 > download 함수 실행으로 화면에 그려지는 값은 5 > 더하기 버튼 클릭 시 +1 (6) > 상태 변경에 따른 useEffect 실행 > download 함수 실행으로 화면에 그려지는 값은 5 )
-    }, []) // useEffect 두번째 인자(의존성)로 빈 배열을 넣어주면 최초 실행 후부터는 무시(useEffect 실행 x)
-                // 즉, 빈 배열에 의존할 변수를 적게되면 해당 변수의 상태가 변경될 시, useEffect를 실행한다는 의미 (의존 리스트 관리 가능)
+    // 함수를 기억하는 hooks 라이브러리
+    // 첫 번째 인자로는 기억할 함수, 두 번째 인자로는 언제만 실행되게 할건지 (dependency)
+    const addResult = useMemo( ()=> getAddResult(), [list])
 
     // 렌더링 시점은 상태값이 변할 때
     return (
         <div>
-            <h1>데이터 : {data}</h1>
-            <button onClick={ ()=>{setData(data+1)} }>더하기</button>
+            <button onClick={ () => { setList([...list, 10]) }}> 리스트 값 추가 </button>
+            {/* 문자 변경 버튼을 눌러도 sum 함수가 실행됨 => str의 상태가 변하기 때문에 다시 렌더링되면서 getAddResult() 실행 */}
+            <button onClick={ () => {setStr("안녕")} }> 문자 변경 </button>
+
+            <div>
+                {list.map( (i)=> (
+                    <h1>{i}</h1>
+                ))}
+            </div>
+            {/*<div>{str} : {getAddResult()} </div>*/}
+            {/* useMemo()를 사용하면 문자 변경 버튼 눌렀을 때, sum 함수 실행 x (== 리스트 값 추가할 때만 getAddResult() 실행) */}
+            <div>{str} : {addResult} </div>
         </div>
     );
 }
