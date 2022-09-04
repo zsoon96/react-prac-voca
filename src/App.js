@@ -14,8 +14,8 @@ function App() {
     const [users, setUsers] = useState(sample) // 데이터뿐만 아니라 레퍼런스가 같기때문에 최초 1번만 렌더링됨!
 
     const download= () => {
-        // setUsers(sample) // 데이터 추가 반영 안됨
-        setUsers([...sample,{id: 4, name: "장보고"} ]) // 데이터 추가 반영 됨 !
+        const a = sample.concat( {id: 4, name: "장보고"} )
+        setUsers(a) // 레퍼런스가 변경되었으니 데이터 추가 반영됨 !
     }
 
     // 렌더링 시점은 상태값이 변할 때
