@@ -14,9 +14,10 @@ function App() {
     const [users, setUsers] = useState(sample) // 데이터뿐만 아니라 레퍼런스가 같기때문에 최초 1번만 렌더링됨!
 
     const download= () => {
-        // setUsers(sample)
-        // 만약 같은 데이터를 리렌더링할 경우 (깊은 복사 활용)
-        setUsers([...sample])
+        // 데이터 추가
+        sample.push({id: 4, name: "장보고"})
+        // setUsers(sample) // 데이터 추가 반영 안됨
+        setUsers([...sample]) // 데이터 추가 반영 됨 !
     }
 
     // 렌더링 시점은 상태값이 변할 때
