@@ -3,18 +3,20 @@ import {useState} from "react";
 
 function App() {
 
-    // 상태값 변경을 위해 React hook이라는 라이브러리에 useState() 사용
-    // const [변수명, 변경값이 담긴 변수명] = useState(초기값)
-    const [users, setUsers] = useState([{ id: 4, name: "장보고"}])
+    console.log("앱 최초 실행!")
+
+    let sample = [
+        { id: 1, name: "홍길동" },
+        { id: 2, name: "임꺽정" },
+        { id: 3, name: "이순신" }
+    ]
+
+    const [users, setUsers] = useState(sample) // 데이터뿐만 아니라 레퍼런스가 같기때문에 최초 1번만 렌더링됨!
 
     const download= () => {
-        let sample = [
-            { id: 1, name: "홍길동" },
-            { id: 2, name: "임꺽정" },
-            { id: 3, name: "이순신" }
-        ]
-        // setUsers([...users, ...sample]) // 기존 데이터에 추가
-        setUsers([...sample]) // 새로운 내용으로 교체 (덮어쓰기)
+        // setUsers(sample)
+        // 만약 같은 데이터를 리렌더링할 경우 (깊은 복사 활용)
+        setUsers([...sample])
     }
 
     // 렌더링 시점은 상태값이 변할 때
