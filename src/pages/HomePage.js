@@ -8,6 +8,7 @@ const HomePage = () => {
     // http 요청 방법 (fetch)
     const [boards, setBoard] = useState([]);
     const [number, setNumber] = useState(0);
+    const [user, setUser] = useState({});
 
     // 빈 배열 한번만 실행
     useEffect( () => {
@@ -19,6 +20,7 @@ const HomePage = () => {
         ]
 
         setBoard([...data])
+        setUser( {id: 1, name: 'soon'})
     }, [])
 
     // 컴포넌트 재사용성을 위해 page에서 상태변화
@@ -26,7 +28,7 @@ const HomePage = () => {
         <div>
             <Header />
             {/* props로 변수와 동작을 제어하는 함수 전달 (여러개 넘기는 거 가능) */}
-            <Home boards = {boards} setBoard = {setBoard} number = {number} setNumber = {setNumber} />
+            <Home boards = {boards} setBoard = {setBoard} number = {number} setNumber = {setNumber} user = {user} />
             <Footer />
         </div>
     );
