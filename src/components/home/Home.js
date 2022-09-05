@@ -21,6 +21,7 @@ const Home = (props) => {
         <div>
             <h1>홈 : {number}</h1>
             <button onClick={ () => setNumber(number+1) }>숫자 증가</button>
+            {/* 부모로 부터 (Hompage.js) 받은 props를 다시 스타일 컴포넌트(외부)에 넘겨줌 (HomePage.js > Home.js > StyledDeleteButton) */}
             <StyledDeleteButton user={user} onClick={() => setBoard([])}>삭제하기</StyledDeleteButton>
             {boards.map((board) =>
                 <h3>
