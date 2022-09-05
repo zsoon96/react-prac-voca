@@ -7,6 +7,7 @@ const HomePage = () => {
 
     // http 요청 방법 (fetch)
     const [boards, setBoard] = useState([]);
+    const [number, setNumber] = useState(0);
 
     // 빈 배열 한번만 실행
     useEffect( () => {
@@ -25,7 +26,7 @@ const HomePage = () => {
         <div>
             <Header />
             {/* props로 변수와 동작을 제어하는 함수 전달 (여러개 넘기는 거 가능) */}
-            <Home boards = {boards} setBoard = {setBoard} />
+            <Home boards = {boards} setBoard = {setBoard} number = {number} setNumber = {setNumber} />
             <Footer />
         </div>
     );
