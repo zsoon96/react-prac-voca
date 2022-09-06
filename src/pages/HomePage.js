@@ -26,10 +26,8 @@ const HomePage = () => {
     // 컴포넌트 재사용성을 위해 page에서 상태변화
     return (
         <div>
-            <Header />
             {/* props로 변수와 동작을 제어하는 함수 전달 (여러개 넘기는 거 가능) */}
             <Home boards = {boards} setBoard = {setBoard} number = {number} setNumber = {setNumber} user = {user} />
-            <Footer />
         </div>
     );
 };

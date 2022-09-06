@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from "react-router-dom";
 
 // 재사용을 위한 하나의 컴포넌트 생성
 
@@ -12,8 +13,14 @@ const Header = () => {
     return (
         <StyledHeaderDiv>
             <ul>
-                <li>메뉴 1</li>
-                <li>메뉴 2</li>
+                <li>
+                    {/* 해당 글자 클릭 시, 헤더 외 내용 부분만 변경 == 필요한 부분만 다시 불러옴 */}
+                    {/* 그와 반면 a태그를 사용하게 될 경우, 전체 페이지를 새로고침해서 불러오기 때문에 사용 비추천 */}
+                    <Link to = "/">홈</Link>
+                </li>
+                <li>
+                    <Link to = "/login">로그인</Link>
+                </li>
             </ul>
         </StyledHeaderDiv>
     )
