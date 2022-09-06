@@ -9,6 +9,11 @@ const StyledHeaderDiv = styled.div`
     height: 300px;
 `
 
+// 일반적인 방법으로 스타일 적용이 안되는 경우, 아래와 같이 상속해서 사용하기!
+const StyledHeadLink = styled(Link)`
+    color: red;
+`
+
 const Header = () => {
     return (
         <StyledHeaderDiv>
@@ -16,7 +21,7 @@ const Header = () => {
                 <li>
                     {/* 해당 글자 클릭 시, 헤더 외 내용 부분만 변경 == 필요한 부분만 다시 불러옴 */}
                     {/* 그와 반면 a태그를 사용하게 될 경우, 전체 페이지를 새로고침해서 불러오기 때문에 X (SPA이기 때문) */}
-                    <Link to = "/">홈</Link>
+                    <StyledHeadLink to = "/">홈</StyledHeadLink>
                 </li>
                 <li>
                     <Link to = "/login/2">로그인</Link>
