@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import {Button} from "react-bootstrap";
 
 // HomePage.js(부모)에서 넘겨준 props 받기(자식)
 const Home = (props) => {
@@ -25,6 +26,7 @@ const Home = (props) => {
 
     return (
         <div>
+            <Button variant="primary">Primary</Button>
             <h1>홈 : {number}</h1>
             <StyledAddButton user={user} onClick={ () => setNumber(number+1) }>숫자 증가</StyledAddButton>
             {/* 부모로 부터 (Hompage.js) 받은 props를 다시 스타일 컴포넌트(외부)에 넘겨줌 (HomePage.js > Home.js > StyledDeleteButton) */}
