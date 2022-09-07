@@ -11,13 +11,13 @@ function App() {
          // BrowserRouter로 모든 컴포넌트 감싸주기
         <BrowserRouter>
             {/*<Header/>*/}
-            <Navigation />
+            {/*<Navigation />*/}
             <Routes>
                 {/*<Route path="/" element={<HomePage />} />*/}
                 {/*<Route path="/login/:id" element={<LoginPage />} />*/}
 
                 <Route path="/" element={<ListPage />} />
-                <Route path="/write" element={<WritePage />} />
+                {/*<Route path="/write" element={<WritePage />} />*/}
             </Routes>
             {/*<Footer />*/}
         </BrowserRouter>
