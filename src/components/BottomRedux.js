@@ -12,8 +12,8 @@ const BottomRedux = () => {
         <div className='sub_container'>
             <h2>bottom</h2>
             {/* 클릭 이벤트가 발생하면 해당 액션함수 실행 */}
-            <button onClick={ () => dispatch(increaseNum())}>증가</button>
-            <button onClick={ () => dispatch(decreaseNum())}>감소</button>
+            <button onClick={ () => dispatch(increaseNum("up"))}>증가</button>
+            <button onClick={ () => dispatch(decreaseNum("down"))}>감소</button>
         </div>
     );
 };
