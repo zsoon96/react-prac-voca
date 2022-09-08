@@ -1,26 +1,26 @@
-import ListPage from "./pages/ListPage";
-import WritePage from "./pages/WritePage";
-import Footer from "./components/common/Footer";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Navigation from "./components/Navigation";
+import TopRedux from "./components/TopRedux";
+import BottomRedux from "./components/BottomRedux";
+import React, {useState} from "react";
 
 
 function App() {
 
-    return (
-         // BrowserRouter로 모든 컴포넌트 감싸주기
-        <BrowserRouter>
-            {/*<Header/>*/}
-            {/*<Navigation />*/}
-            <Routes>
-                {/*<Route path="/" element={<HomePage />} />*/}
-                {/*<Route path="/login/:id" element={<LoginPage />} />*/}
+    const [num, setNum] = useState(0)
 
-                <Route path="/" element={<ListPage />} />
-                {/*<Route path="/write" element={<WritePage />} />*/}
-            </Routes>
-            {/*<Footer />*/}
-        </BrowserRouter>
+    // 숫자 증가함수
+    const addNum = () => {
+        setNum(num + 1)
+    }
+
+    return (
+        // BrowserRouter로 모든 컴포넌트 감싸주기
+        <div className='container'>
+            <h1>Redux 적용 예제</h1>
+            {/* 변수 props 전달 */}
+            <TopRedux num = {num} />
+            {/* 함수 props 전달 */}
+            <BottomRedux addNum = {addNum}/>
+        </div>
     );
 }
 
