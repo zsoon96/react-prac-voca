@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 const Detail = () => {
+
+    const navigate = useNavigate()
 
     const [book, setBook] = useState({
         id: "",
@@ -23,9 +26,22 @@ const Detail = () => {
         })
     })
 
+    const deleteBook = () => {
+        axios.delete('http://localhost:3000/board/' + id)
+            .then((res) => {
+                if (res.status === 200) {
+                    navigate('/')
+                } else {
+                    alert('삭제에 실패하였습니다.')
+                }
+            })
+    }
+
     return (
         <div>
             <h1> 책 상세보기 </h1>
+            <Button variant="warning">수정</Button>
+            <Button variant="danger" onClick={deleteBook}>삭제</Button>
             <hr />
             <h4>{book.author}</h4>
             <h1>{book.title}</h1>
