@@ -11,7 +11,7 @@ const Header = () => {
                 <Container>
                     <Link to="/" className = "navbar-brand">홈</Link>
                     <Nav className="me-auto">
-                        <Link to="/saveForm" className = "navbar-link">글작성</Link>
+                        <Link to="/save" className = "navbar-link">글작성</Link>
                         <Link to="/joinForm" className = "navbar-link">회원가입</Link>
                         <Link to="/loginForm" className = "navbar-link">로그인</Link>
                     </Nav>
