@@ -24,7 +24,7 @@ const Detail = () => {
                 // res.data 객체로 바로 상태변화
                 setBook(res.data)
         })
-    })
+    },[])
 
     const deleteBook = () => {
         axios.delete('http://localhost:3000/board/' + id)
@@ -37,10 +37,14 @@ const Detail = () => {
             })
     }
 
+    const updateBook = () => {
+        navigate('/update/'+ id)
+    }
+
     return (
         <div>
             <h1> 책 상세보기 </h1>
-            <Button variant="warning">수정</Button>
+            <Button variant="warning" onClick={updateBook}>수정</Button>
             <Button variant="danger" onClick={deleteBook}>삭제</Button>
             <hr />
             <h4>{book.author}</h4>
