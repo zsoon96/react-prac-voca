@@ -42,6 +42,7 @@ const JoinForm = () => {
                     alert('회원가입에 실패하였습니다.')
                 }
             })
+            .catch(e => alert(e.response.data.message))
     }
 
     return (
