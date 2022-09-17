@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const LoginForm = () => {
+
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -16,7 +20,16 @@ const LoginForm = () => {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        console.log('로그인 정보 입력 성공')
+        const body = {
+            email: email,
+            password: password
+        }
+        axios.post('http://localhost:3000/auth/login', body)
+            .then((res) => {
+                alert(res.data)
+                navigate('/')
+            })
+            .catch( e => alert(e.response.data.message))
     }
 
 
