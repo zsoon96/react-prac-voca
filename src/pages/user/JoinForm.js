@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {Col, Form, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const JoinForm = () => {
+
+    const navigate = useNavigate()
 
     const [user, setUser] = useState({
         email: "",
@@ -22,8 +26,22 @@ const JoinForm = () => {
 
     const submitUser = (e) => {
         e.preventDefault()
-        console.log('회원가입 정보 입력 성공')
-        // console.log(user.email)
+        const body = {
+            email: user.email,
+            password: user.password,
+            username: user.username,
+            nickname: user.nickname,
+            birth: user.birth,
+            phone: user.phone
+        }
+        axios.post('http://localhost:3000/auth/signup', body )
+            .then((res) => {
+                if ( res.status === 201 ) {
+                    navigate('/login')
+                } else {
+                    alert('회원가입에 실패하였습니다.')
+                }
+            })
     }
 
     return (
