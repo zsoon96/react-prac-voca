@@ -7,19 +7,27 @@ import Detail from "./pages/book/Detail";
 import LoginForm from "./pages/user/LoginForm";
 import JoinForm from "./pages/user/JoinForm";
 import UpdateForm from "./pages/book/UpdateForm";
+import Auth from "./hoc/auth";
 
 
 function App() {
+    const AuthLoginPage = Auth(LoginForm, false)
+    const AuthJoinPage = Auth(JoinForm, false)
+    const AuthHomePage = Auth(Home, true)
+    const AuthSaveForm = Auth(SaveForm, true)
+    const AuthDetailForm = Auth(Detail, true)
+    const AuthUpdateForm = Auth(UpdateForm, true)
+
     return (
         <div>
             <Header/>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/save" element={<SaveForm />} />
-                <Route path="/book/:id" element={<Detail />} />
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/join" element={<JoinForm />} />
-                <Route path="/update/:id" element={<UpdateForm />} />
+                <Route path="/" element={<AuthHomePage />} />
+                <Route path="/save" element={<AuthSaveForm />} />
+                <Route path="/book/:id" element={<AuthDetailForm />} />
+                <Route path="/login" element={<AuthLoginPage />} />
+                <Route path="/join" element={<AuthJoinPage />} />
+                <Route path="/update/:id" element={<AuthUpdateForm />} />
             </Routes>
         </div>
     );
