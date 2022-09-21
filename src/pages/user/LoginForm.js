@@ -5,6 +5,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../actions/user_action";
+import {REST_API_KEY, REDIRECT_URI} from "../../config/Oauth";
 
 const LoginForm = () => {
 
@@ -39,6 +40,7 @@ const LoginForm = () => {
             })
     }
 
+    const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`
 
     return (
         <Form>
@@ -54,6 +56,10 @@ const LoginForm = () => {
 
             <Button variant="primary" type="submit" onClick={loginHandler}>
                 로그인
+            </Button>
+            {/* 인가 코드 요청은 REST-API 방식이 아닌 href 방식으로 호출 */}
+            <Button href={KAKAO_AUTH_URL} variant="primary" type="submit">
+                카카오 로그인
             </Button>
         </Form>
     );
