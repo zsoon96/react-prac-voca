@@ -8,6 +8,7 @@ import LoginForm from "./pages/user/LoginForm";
 import JoinForm from "./pages/user/JoinForm";
 import UpdateForm from "./pages/book/UpdateForm";
 import Auth from "./hoc/auth";
+import OauthRedirect from "./pages/oauth/OauthRedirect";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     const AuthSaveForm = Auth(SaveForm, true)
     const AuthDetailForm = Auth(Detail, true)
     const AuthUpdateForm = Auth(UpdateForm, true)
+    const AuthOauthRedirect = Auth(OauthRedirect, false)
 
     return (
         <div>
@@ -26,6 +28,7 @@ function App() {
                 <Route path="/save" element={<AuthSaveForm />} />
                 <Route path="/book/:id" element={<AuthDetailForm />} />
                 <Route path="/login" element={<AuthLoginPage />} />
+                <Route path="/auth/kakao" element={<AuthOauthRedirect />} />
                 <Route path="/join" element={<AuthJoinPage />} />
                 <Route path="/update/:id" element={<AuthUpdateForm />} />
             </Routes>
