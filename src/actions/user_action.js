@@ -14,3 +14,12 @@ export function loginUser(dataToSubmit) {
         payload: request
     }
 }
+
+export function loginUserKakao(dataToSubmit) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${dataToSubmit.accessToken}`
+
+    return {
+        type: "KAKAO_LOGIN_USER",
+        payload: dataToSubmit
+    }
+}
