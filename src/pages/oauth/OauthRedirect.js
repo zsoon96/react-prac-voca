@@ -6,7 +6,7 @@ const OauthRedirect = () => {
     const code = new URL (window.location.href).searchParams.get('code')
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/auth/kakao?code=${code}`)
+        axios.get(`http://localhost:3001/auth/kakao?code=${code}`)
             .then((res) => console.log(res))
     },[])
 

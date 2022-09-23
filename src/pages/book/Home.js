@@ -7,7 +7,7 @@ const Home = () => {
     const [books, setBooks] = useState([])
 
     useEffect( ()=> {
-        axios.get('http://localhost:3000/board')
+        axios.get('http://localhost:3001/board')
             .then((res) => setBooks(res.data) )
     },[] )
 

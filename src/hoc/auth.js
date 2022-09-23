@@ -12,7 +12,7 @@ export default function (SpecificComponent,option) {
         const navigate = useNavigate()
 
         useEffect(() => {
-            axios.get('http://localhost:3000/auth/check')
+            axios.get('http://localhost:3001/auth/check')
                 .then((res) => {
                     console.log(res.data)
                     // 로그인 하지 않은 상태에서 option값이 true 페이지 접근시

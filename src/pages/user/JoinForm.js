@@ -34,7 +34,7 @@ const JoinForm = () => {
             birth: user.birth,
             phone: user.phone
         }
-        axios.post('http://localhost:3000/auth/signup', body )
+        axios.post('http://localhost:3001/auth/signup', body )
             .then((res) => {
                 if ( res.status === 201 ) {
                     navigate('/login')

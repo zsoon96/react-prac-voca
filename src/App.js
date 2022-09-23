@@ -28,7 +28,7 @@ function App() {
                 <Route path="/save" element={<AuthSaveForm />} />
                 <Route path="/book/:id" element={<AuthDetailForm />} />
                 <Route path="/login" element={<AuthLoginPage />} />
-                <Route path="/auth/kakao" element={<AuthOauthRedirect />} />
+                <Route path="/auth/kakaoCallback" element={<AuthOauthRedirect />} />
                 <Route path="/join" element={<AuthJoinPage />} />
                 <Route path="/update/:id" element={<AuthUpdateForm />} />
             </Routes>

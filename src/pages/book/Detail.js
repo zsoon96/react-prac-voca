@@ -19,7 +19,7 @@ const Detail = () => {
 
     // 해당 id에 맞는 정보 조회
     useEffect(() => {
-        axios.get('http://localhost:3000/board/' + id).
+        axios.get('http://localhost:3001/board/' + id).
             then((res) => {
                 // res.data 객체로 바로 상태변화
                 setBook(res.data)
@@ -27,7 +27,7 @@ const Detail = () => {
     },[])
 
     const deleteBook = () => {
-        axios.delete('http://localhost:3000/board/' + id)
+        axios.delete('http://localhost:3001/board/' + id)
             .then((res) => {
                 if (res.status === 200) {
                     navigate('/')

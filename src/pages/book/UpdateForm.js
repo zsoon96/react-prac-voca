@@ -20,7 +20,7 @@ const UpdateForm = () => {
 
     // 기존데이터 받아오기
     useEffect(() => {
-        axios.get('http://localhost:3000/board/' + id).
+        axios.get('http://localhost:3001/board/' + id).
         then((res) => {
             // res.data 객체로 바로 상태변화
             setBook(res.data)
@@ -36,7 +36,7 @@ const UpdateForm = () => {
 
     const submitBook = (e) => {
         e.preventDefault() // submit이 actions을 안타고 자기 할일을 그만함
-        axios.put('http://localhost:3000/board/' + id, book)
+        axios.put('http://localhost:3001/board/' + id, book)
             .then((res) => {
                 console.log(res.data)
                 if ( res.status === 200) {

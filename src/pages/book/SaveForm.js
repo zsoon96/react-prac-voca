@@ -28,7 +28,7 @@ const SaveForm = () => {
         //     author: book.author,
         //     content: book.content
         // }
-        axios.post('http://localhost:3000/board', book)
+        axios.post('http://localhost:3001/board', book)
             .then((res) => {
                 if ( res.status === 201) {
                     navigate("/")
