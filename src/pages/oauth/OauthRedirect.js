@@ -4,7 +4,7 @@ import {loginUserKakao} from "../../actions/user_action";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-// 리다이렉트 될 화면
+// 리다이렉트 될 화면 (인가코드 받음) / 로그인 처리 진행시 보여질 화면
 const OauthRedirect = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -12,14 +12,15 @@ const OauthRedirect = () => {
     const code = new URL (window.location.href).searchParams.get('code')
 
     useEffect(() => {
+        // 2- 카카오로부터 받은 인가 코드를 서버 /auth/kakao로 전달
         axios.get(`http://localhost:3001/auth/kakao?code=${code}`)
             .then((res) => {
                 return res.data
             })
+            // 3- 서버에서 응답값으로 사용자의 정보를 반환해줌 > 해당 정보를 가지고 dispatch 액션함수 실행
             .then((res) => {
                 dispatch(loginUserKakao(res))
                     .then((res) => {
-                        console.log(res)
                         if (res.payload.loginSuccess) {
                             navigate('/')
                         } else {

@@ -58,6 +58,7 @@ const LoginForm = () => {
                 로그인
             </Button>
             {/* 인가 코드 요청은 REST-API 방식이 아닌 href 방식으로 호출 */}
+            {/* 1-카카오 로그인 btn 클릭 > kakao/oauth/authorize에 인가코드 요청 */}
             <Button href={KAKAO_AUTH_URL} variant="primary" type="submit">
                 카카오 로그인
             </Button>

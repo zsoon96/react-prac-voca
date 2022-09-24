@@ -16,12 +16,14 @@ export function loginUser(dataToSubmit) {
 }
 
 export function loginUserKakao(dataToSubmit) {
-    // console.log(dataToSubmit)
+
+    // 4- 해당 정보를 다시 서버 /auth/kakao/login으로 로그인 요청 > 로그인 처리 후, 해당 응답값 반환 > 리듀서에 전달해서 상태 변환
     const request = axios.post('http://localhost:3001/auth/kakao/login', dataToSubmit)
         .then((res) => {
-            console.log(res.data)
+
             // API 요청할 때마다 헤더에 accessToken 담아 보내도록 설정 -> localStorage, cookie 등에 저장하지 않결
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`
+
             return res.data
         })
         .catch( e => alert(e.response.data.message))
