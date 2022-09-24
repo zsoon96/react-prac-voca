@@ -12,20 +12,23 @@ const OauthRedirect = () => {
     const code = new URL (window.location.href).searchParams.get('code')
 
     useEffect(() => {
-        const data = axios.get(`http://localhost:3001/auth/kakao?code=${code}`)
+        axios.get(`http://localhost:3001/auth/kakao?code=${code}`)
             .then((res) => {
                 return res.data
             })
-
-        dispatch(loginUserKakao(data))
             .then((res) => {
-                console.log(res)
-                if (res.payload.loginSuccess) {
-                    navigate('/')
-                } else {
-                    alert('로그인에 실패하였습니다.')
+                dispatch(loginUserKakao(res))
+                    .then((res) => {
+                        console.log(res)
+                        if (res.payload.loginSuccess) {
+                            navigate('/')
+                        } else {
+                            alert('로그인에 실패하였습니다.')
+                        }
+                    })
                 }
-            })
+
+            )
     },[])
 
     return (
