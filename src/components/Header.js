@@ -4,18 +4,28 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {logoutUser} from "../actions/user_action";
 
 const Header = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const logoutHandler = () => {
-        axios.post('http://localhost:3001/auth/logout')
+
+        dispatch(logoutUser())
             .then((res) => {
-                const { accessToken } = res.data
-                // API 요청할 때마다 헤더에 accessToken 담아 보내도록 설정 -> localStorage, cookie 등에 저장하지 않결
-                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-                navigate('/login')
+                if ( res.payload.isAuth === false ) {
+                    navigate('/login')
+                }
             })
+        // axios.post('http://localhost:3001/auth/logout')
+        //     .then((res) => {
+        //         const { accessToken } = res.data
+        //         // API 요청할 때마다 헤더에 accessToken 담아 보내도록 설정 -> localStorage, cookie 등에 저장하지 않결
+        //         axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        //         navigate('/login')
+        //     })
     }
 
     return (

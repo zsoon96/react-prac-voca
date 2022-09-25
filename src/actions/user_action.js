@@ -33,3 +33,35 @@ export function loginUserKakao(dataToSubmit) {
         payload: request
     }
 }
+
+export function authCheck() {
+
+    const request = axios.get('http://localhost:3001/auth/check')
+        .then((res) => {
+            // console.log(res.data)
+            // axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`
+            return res.data
+        })
+
+    return {
+        type: "AUTH_USER",
+        payload: request
+    }
+}
+
+export function logoutUser() {
+    const request = axios.post('http://localhost:3001/auth/logout')
+        .then((res) => {
+
+            const token = `Bearer ${res.data.accessToken}`
+            axios.defaults.headers.common['Authorization'] = token;
+
+            return res.data
+        })
+        .catch( e => alert(e.response.data.message))
+
+    return {
+        type: "AUTH_USER",
+        payload: request
+    }
+}
