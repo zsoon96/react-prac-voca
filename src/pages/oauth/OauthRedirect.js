@@ -3,11 +3,13 @@ import axios from "axios";
 import {loginUserKakao} from "../../actions/user_action";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 // 리다이렉트 될 화면 (인가코드 받음) / 로그인 처리 진행시 보여질 화면
 const OauthRedirect = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [cookies, setCookie] = useCookies(['token'])
 
     const code = new URL (window.location.href).searchParams.get('code')
 
@@ -22,6 +24,8 @@ const OauthRedirect = () => {
                 dispatch(loginUserKakao(res))
                     .then((res) => {
                         if (res.payload.loginSuccess) {
+                            // 쿠키에 토큰 저장
+                            setCookie('token', res.payload.accessToken)
                             navigate('/')
                         } else {
                             alert('로그인에 실패하였습니다.')
