@@ -49,10 +49,6 @@ export function authCheck() {
 export function logoutUser() {
     const request = axios.post('http://localhost:3001/auth/logout')
         .then((res) => {
-
-            // const token = `Bearer ${res.data.accessToken}`
-            // axios.defaults.headers.common['Authorization'] = token;
-
             return res.data
         })
         .catch( e => alert(e.response.data.message))

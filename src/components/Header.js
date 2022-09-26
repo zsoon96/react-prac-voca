@@ -18,6 +18,7 @@ const Header = () => {
         dispatch(logoutUser())
             .then((res) => {
                 if ( res.payload === false ) {
+                    // // 쿠키에서 id 삭제
                     removeCookie('token')
                     navigate('/login')
                 }
