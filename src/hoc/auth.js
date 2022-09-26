@@ -3,6 +3,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {authCheck} from "../actions/user_action";
+import {useCookies} from "react-cookie";
 
 export default function (SpecificComponent,option) {
     // option
@@ -13,25 +14,15 @@ export default function (SpecificComponent,option) {
     function AuthenticationCheck() {
         const navigate = useNavigate()
         const dispatch = useDispatch()
+        const [cookies, setCookie] = useCookies(['token'])
 
         useEffect(() => {
-
-            dispatch(authCheck())
-                .then((res) => {
-                    if (!res.payload.isAuth) {
-                        if (option) {
-                            navigate('/login')
-                        }
-                    } else {
-                        if (option === false) {
-                            navigate('/')
-                        }
-                    }
-                })
+            const token = cookies.token; // 쿠키에서 id 를 꺼내기
+            // token이 body로 요청이 가지 않아서 헤더에 토큰 설정 후, 데이터 전달
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
             // axios.get('http://localhost:3001/auth/check')
             //     .then((res) => {
-            //         console.log(res.data)
             //         // 로그인 하지 않은 상태에서 option값이 true 페이지 접근시
             //         if (!res.data) {
             //           if (option) {
@@ -44,6 +35,20 @@ export default function (SpecificComponent,option) {
             //             }
             //         }
             //     })
+
+            dispatch(authCheck())
+                .then((res) => {
+                    console.log(res.payload)
+                    if (!res.payload) {
+                        if (option) {
+                            navigate('/login')
+                        }
+                    } else {
+                        if (option === false) {
+                            navigate('/')
+                        }
+                    }
+                })
         },[])
 
         return (

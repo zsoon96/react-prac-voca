@@ -35,11 +35,8 @@ export function loginUserKakao(dataToSubmit) {
 }
 
 export function authCheck() {
-
     const request = axios.get('http://localhost:3001/auth/check')
         .then((res) => {
-            // console.log(res.data)
-            // axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`
             return res.data
         })
 
@@ -53,8 +50,8 @@ export function logoutUser() {
     const request = axios.post('http://localhost:3001/auth/logout')
         .then((res) => {
 
-            const token = `Bearer ${res.data.accessToken}`
-            axios.defaults.headers.common['Authorization'] = token;
+            // const token = `Bearer ${res.data.accessToken}`
+            // axios.defaults.headers.common['Authorization'] = token;
 
             return res.data
         })

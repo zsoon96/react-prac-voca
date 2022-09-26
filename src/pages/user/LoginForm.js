@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../actions/user_action";
-import {REST_API_KEY, REDIRECT_URI} from "../../config/Oauth";
+import {REDIRECT_URI, REST_API_KEY} from "../../config/Oauth";
+import {useCookies} from "react-cookie";
 
 const LoginForm = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [cookies, setCookie] = useCookies(['token'])
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -33,6 +35,8 @@ const LoginForm = () => {
         dispatch(loginUser(body))
             .then((res) => {
                 if (res.payload.loginSuccess) {
+                    // 쿠키에 토큰 저장
+                    setCookie('token', res.payload.accessToken)
                     navigate('/')
                 } else {
                     alert('로그인에 실패하였습니다.')

@@ -6,16 +6,19 @@ import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {logoutUser} from "../actions/user_action";
+import {useCookies} from "react-cookie";
 
 const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     const logoutHandler = () => {
 
         dispatch(logoutUser())
             .then((res) => {
-                if ( res.payload.isAuth === false ) {
+                if ( res.payload === false ) {
+                    removeCookie('token')
                     navigate('/login')
                 }
             })
