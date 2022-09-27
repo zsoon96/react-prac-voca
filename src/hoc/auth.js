@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {authCheck} from "../actions/user_action";
 import {useCookies} from "react-cookie";
 
@@ -20,6 +20,7 @@ export default function (SpecificComponent,option) {
             const token = cookies.token; // 쿠키에서 id 를 꺼내기
             // token이 body로 요청이 가지 않아서 헤더에 토큰 설정 후, 데이터 전달
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+            // console.log(token)
 
             // axios.get('http://localhost:3001/auth/check')
             //     .then((res) => {

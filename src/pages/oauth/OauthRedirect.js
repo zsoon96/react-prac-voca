@@ -26,6 +26,7 @@ const OauthRedirect = () => {
                         if (res.payload.loginSuccess) {
                             // 쿠키에 토큰 저장
                             setCookie('token', res.payload.accessToken)
+                            console.log(cookies.token)
                             navigate('/')
                         } else {
                             alert('로그인에 실패하였습니다.')

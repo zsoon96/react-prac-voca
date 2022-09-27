@@ -23,7 +23,6 @@ export function loginUserKakao(dataToSubmit) {
 
             // API 요청할 때마다 헤더에 accessToken 담아 보내도록 설정 -> localStorage, cookie 등에 저장하지 않결
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`
-
             return res.data
         })
         .catch( e => alert(e.response.data.message))

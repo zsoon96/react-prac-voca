@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {loginUser} from "../../actions/user_action";
 import {REDIRECT_URI, REST_API_KEY} from "../../config/Oauth";
 import {useCookies} from "react-cookie";
+import cookie from "cookie";
 
 const LoginForm = () => {
 
@@ -36,6 +37,7 @@ const LoginForm = () => {
             .then((res) => {
                 if (res.payload.loginSuccess) {
                     // 쿠키에 토큰 저장
+                    // httpOnly 옵션 적용 시, 로그인 기능 x > .com으로 끝나는 일반적인 도메인에만 적용
                     setCookie('token', res.payload.accessToken)
                     navigate('/')
                 } else {
