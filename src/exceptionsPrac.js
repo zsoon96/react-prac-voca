@@ -64,20 +64,21 @@ export function wait(sec) {
 
 // 예외처리 3 > async/await - 비동기 함수
 export async function myAsyncFun() {
-    return 'done!';
+    throw 'asyncError!';
 }
 
 export function myPromiseFun() {
     return new Promise((resolve, reject) => {
-        resolve('done!!')
+        reject('promiseError!')
     })
 }
 
-const result = myAsyncFun();
-console.log(result);
-
-const result2 = myPromiseFun();
-console.log(result2);
+const result = myAsyncFun().catch(e => {
+    console.log(e);
+});
+const result2 = myPromiseFun().catch(e => {
+    console.log(e);
+});
 
 const ExceptionsPrac = () => {
     return (
