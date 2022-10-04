@@ -8,7 +8,7 @@ export function f2() {
     console.log('f2 end');
 }
 
-export function f1()  {
+export function f1() {
     console.log('f1 start');
     // f2()에 대한 예외가 발생하면, catch로 처리한 후, 다음 구문 실행
     try {
@@ -20,9 +20,46 @@ export function f1()  {
     console.log('f1 end');
 }
 
-console.log('will: f1');
-f1();
-console.log('did: f1');
+// console.log('will: f1');
+// f1();
+// console.log('did: f1');
+
+
+// 예외처리 2 > promise의 catch() - 비동기 함수
+export function wait(sec) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('error!!')
+        }, sec * 1000)
+    })
+}
+
+// 2-1
+// wait(3)
+//     // 해당 catch는 wait()에 대한 예외처리
+//     .catch(e => {
+//     console.log('1st catch', e);
+//     })
+//     // 해당 catch는 바로 위 실행에 대한 예외처리
+//     .catch( e => {
+//         console.log('2rd catch', e);
+//     });
+
+// 2-2
+wait(3)
+    // then(성공 시 호출, 실패시 호출)
+    .then(
+        () => {
+            console.log('done!');
+        },
+        e => {
+            console.log('1st catch in Then', e);
+            throw new Error('error!')
+        })
+    // 해당 catch는 then() 실행에 대한 예외처리
+    .catch(e => {
+        console.log('2rd catch', e);
+    })
 
 const ExceptionsPrac = () => {
     return (
