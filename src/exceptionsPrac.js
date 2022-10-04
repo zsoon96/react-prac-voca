@@ -46,20 +46,38 @@ export function wait(sec) {
 //     });
 
 // 2-2
-wait(3)
-    // then(성공 시 호출, 실패시 호출)
-    .then(
-        () => {
-            console.log('done!');
-        },
-        e => {
-            console.log('1st catch in Then', e);
-            throw new Error('error!')
-        })
-    // 해당 catch는 then() 실행에 대한 예외처리
-    .catch(e => {
-        console.log('2rd catch', e);
+// wait(3)
+//     // then(성공 시 호출, 실패시 호출)
+//     .then(
+//         () => {
+//             console.log('done!');
+//         },
+//         e => {
+//             console.log('1st catch in Then', e);
+//             throw new Error('error!')
+//         })
+//     // 해당 catch는 then() 실행에 대한 예외처리
+//     .catch(e => {
+//         console.log('2rd catch', e);
+//     })
+
+
+// 예외처리 3 > async/await - 비동기 함수
+export async function myAsyncFun() {
+    return 'done!';
+}
+
+export function myPromiseFun() {
+    return new Promise((resolve, reject) => {
+        resolve('done!!')
     })
+}
+
+const result = myAsyncFun();
+console.log(result);
+
+const result2 = myPromiseFun();
+console.log(result2);
 
 const ExceptionsPrac = () => {
     return (
