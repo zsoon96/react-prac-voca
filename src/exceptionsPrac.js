@@ -64,7 +64,7 @@ export function wait(sec) {
 
 // 예외처리 3 > async/await - 비동기 함수
 export async function myAsyncFun() {
-    console.log(new Date());
+    consssegole.log(new Date());
     const result = await wait(2).catch(e => {
         console.log(e);
     })
@@ -73,13 +73,10 @@ export async function myAsyncFun() {
     console.log(new Date())
 }
 
-export function myPromiseFun() {
-    return new Promise((resolve, reject) => {
-        reject('promiseError!')
-    })
-}
-
-const result = myAsyncFun();
+// 문법오류에 의한 예외처리
+myAsyncFun().catch(e => {
+    console.log(e)
+});
 
 const ExceptionsPrac = () => {
     return (
