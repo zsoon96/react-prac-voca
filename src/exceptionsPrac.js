@@ -65,9 +65,11 @@ export function wait(sec) {
 // 예외처리 3 > async/await - 비동기 함수
 export async function myAsyncFun() {
     console.log(new Date());
-    await wait(2).catch(e => {
+    const result = await wait(2).catch(e => {
         console.log(e);
     })
+    // 에러 발생 시, 변수에 담긴 리턴값이 없기 때문에 undefined로 출력
+    console.log(result)
     console.log(new Date())
 }
 
