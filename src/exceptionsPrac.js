@@ -29,7 +29,7 @@ export function f1() {
 export function wait(sec) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            reject('error!!')
+            resolve('done!!')
         }, sec * 1000)
     })
 }
@@ -64,7 +64,9 @@ export function wait(sec) {
 
 // 예외처리 3 > async/await - 비동기 함수
 export async function myAsyncFun() {
-    throw 'asyncError!';
+    console.log(new Date());
+    await wait(2);
+    console.log(new Date())
 }
 
 export function myPromiseFun() {
@@ -73,12 +75,7 @@ export function myPromiseFun() {
     })
 }
 
-const result = myAsyncFun().catch(e => {
-    console.log(e);
-});
-const result2 = myPromiseFun().catch(e => {
-    console.log(e);
-});
+const result = myAsyncFun();
 
 const ExceptionsPrac = () => {
     return (
