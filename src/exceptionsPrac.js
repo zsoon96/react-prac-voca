@@ -65,12 +65,9 @@ export function wait(sec) {
 // 예외처리 3 > async/await - 비동기 함수
 export async function myAsyncFun() {
     console.log(new Date());
-    try {
-        await wait(2);
-    } catch (e) {
+    await wait(2).catch(e => {
         console.log(e);
-    }
-
+    })
     console.log(new Date())
 }
 
