@@ -9,6 +9,8 @@ import JoinForm from "./pages/user/JoinForm";
 import UpdateForm from "./pages/book/UpdateForm";
 import Auth from "./hoc/auth";
 import OauthRedirect from "./pages/oauth/OauthRedirect";
+import ExceptionsPrac from "./exceptionsPrac";
+import CallbackPrac from "./callbackPrac";
 
 
 function App() {
@@ -22,16 +24,17 @@ function App() {
 
     return (
         <div>
-            <Header/>
-            <Routes>
-                <Route path="/" element={<AuthHomePage />} />
-                <Route path="/save" element={<AuthSaveForm />} />
-                <Route path="/book/:id" element={<AuthDetailForm />} />
-                <Route path="/login" element={<AuthLoginPage />} />
-                <Route path="/auth/kakaoCallback" element={<AuthOauthRedirect />} />
-                <Route path="/join" element={<AuthJoinPage />} />
-                <Route path="/update/:id" element={<AuthUpdateForm />} />
-            </Routes>
+            <CallbackPrac />
+            {/*<Header/>*/}
+            {/*<Routes>*/}
+            {/*    <Route path="/" element={<AuthHomePage />} />*/}
+            {/*    <Route path="/save" element={<AuthSaveForm />} />*/}
+            {/*    <Route path="/book/:id" element={<AuthDetailForm />} />*/}
+            {/*    <Route path="/login" element={<AuthLoginPage />} />*/}
+            {/*    <Route path="/auth/kakaoCallback" element={<AuthOauthRedirect />} />*/}
+            {/*    <Route path="/join" element={<AuthJoinPage />} />*/}
+            {/*    <Route path="/update/:id" element={<AuthUpdateForm />} />*/}
+            {/*</Routes>*/}
         </div>
     );
 }
