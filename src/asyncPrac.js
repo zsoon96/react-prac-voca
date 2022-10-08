@@ -1,4 +1,5 @@
 import React from 'react';
+import async from "async";
 
 // Promise 문제점
     // 1. 동일한 이름의 메서드인 then()을 연쇄적으로 호출하기 때문에 디버깅이 어려움. (break point x)
@@ -37,6 +38,28 @@ async function printAuthorName(postId) {
     console.log('name', name);
 }
 printAuthorName(1);
+
+
+// async/await 예외처리 > try/catch로 일관되게 처리 가능
+async function fetchAuthorNameAsyncEx(postId) {
+    const postResponse = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${postId}`
+    );
+    const post = await postResponse.json();
+    const userId = post.userId;
+
+    try {
+        const userResponse = await fetch(
+            `https://jsonplaceholder.typicode.com/users/${userId}`
+        );
+        const user = await userResponse.json();
+        return user.username;
+    } catch (err) {
+        console.log('요청 실패', err);
+        return '알수 없는 응답';
+    }
+}
+fetchAuthorNameAsyncEx(1).then((name) => {console.log('name', name)})
 
 
 const AsyncPrac = () => {
